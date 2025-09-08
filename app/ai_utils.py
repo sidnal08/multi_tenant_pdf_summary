@@ -1,11 +1,9 @@
-from transformers import pipeline
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lsa import LsaSummarizer
 
-# Use a small summarization model
-summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
-
-def summarize_text(text):
-    # DistilBART has a max token limit; chunk if needed
-    if len(text) > 1000:
-        text = text[:1000]
-    summary = summarizer(text, max_length=130, min_length=30, do_sample=False)
-    return summary[0]['summary_text']
+def summarize_text(text, sentences_count=5):
+    parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    summarizer = LsaSummarizer()
+    summary = summarizer(parser.document, sentences_count)
+    return " ".join(str(sentence) for sentence in summary)
