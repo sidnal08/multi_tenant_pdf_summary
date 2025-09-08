@@ -4,6 +4,5 @@ sqlalchemy
 psycopg2-binary
 pymongo
 pdfplumber
-transformers
-torch==2.8.0
+sumy
 pydantic
