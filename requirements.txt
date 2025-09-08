@@ -7,3 +7,4 @@ pdfplumber
 sumy
 pydantic
 python-multipart
+numpy
