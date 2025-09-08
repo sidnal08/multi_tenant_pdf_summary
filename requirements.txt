@@ -6,3 +6,4 @@ pymongo
 pdfplumber
 sumy
 pydantic
+python-multipart
